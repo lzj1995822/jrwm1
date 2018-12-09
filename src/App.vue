@@ -22,4 +22,7 @@
         margin: 0;
         padding: 0;
     }
+    .icon-ver-alg {
+        vertical-align: middle;
+    }
 </style>
