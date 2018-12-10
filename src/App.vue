@@ -28,4 +28,7 @@
     body {
         background-color: #f0f0f0d1;
     }
+    html,body,#app {
+        height: 100%;
+    }
 </style>

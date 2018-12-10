@@ -13,7 +13,7 @@
             position="bottom"
             style="width: 100%">
             <ul>
-                <li>个人中心</li>
+                <li @click="push('/personal')">个人中心</li>
                 <li>退出登录</li>
             </ul>
         </mt-popup>
@@ -81,6 +81,10 @@
         methods: {
             showMenu() {
                 this.menuVis = !this.menuVis;
+            },
+            push(path) {
+                console.log(111);
+                this.$router.push(path);
             }
         }
     }
@@ -121,7 +125,7 @@
         height: 1rem;
     }
     ul {
-        font-size: .35rem;
+        font-size: .3rem;
     }
     ul li {
         text-align: center;
@@ -134,7 +138,8 @@
     }
     .home .notice {
         background-color: #fff;
-        padding: .2rem;
+        padding: .2rem .3rem;
+        height: 4rem;
     }
     .home .notice .label{
         width: 100%;
