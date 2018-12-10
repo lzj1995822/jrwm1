@@ -4,10 +4,19 @@
             <router-link to="/" slot="left">
                 <!--<mt-button icon="back">返回</mt-button>-->
             </router-link>
-            <mt-button icon="more" slot="right">
+            <mt-button icon="more" slot="right" @click.native="showMenu">
                 <icon name="person" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
             </mt-button>
         </mt-header>
+        <mt-popup
+            v-model="menuVis"
+            position="bottom"
+            style="width: 100%">
+            <ul>
+                <li>个人中心</li>
+                <li>退出登录</li>
+            </ul>
+        </mt-popup>
         <mt-swipe :auto="4000" class="swipe-height">
             <mt-swipe-item>
                 <div>
@@ -3021,7 +3030,7 @@
                 </div>
             </mt-swipe-item>
         </mt-swipe>
-        <div>
+        <div class="btn-list">
             <mt-button>
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="72px" height="72px" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve">  <image id="image0" width="72" height="72" x="0" y="0"
     xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
@@ -3071,7 +3080,7 @@ rkBqWau07CnZUruJ85PAt4ENqKB/pqJVy/gdLXPKSKeGtgF1lPEx1D4m01CnZVuOyh7bQrpFxiHU
 HYBDRZHuE9QND+rUTCWpXfIWD+3A/7h1ydteVPbBtUve3D7hEwb266f3NYGlKBtRgipDHknsawIv
 ogxsLWqprkU5e/12TeD/AXGFzGRw0sEQAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTEyLTA5VDE1
 OjUyOjQzKzA4OjAwigZYNAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0xMi0wOVQxNTo1Mjo0Mysw
-ODowMPtb4IgAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" /></svg>
+ODowMPtb4IgAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC"></image></svg>
                 <p>工作计划</p>
             </mt-button>
             <mt-button>
@@ -3175,22 +3184,34 @@ U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAASUVORK5CYII=" /></svg>
                 <p>特色活动</p>
             </mt-button>
         </div>
+
     </section>
 </template>
 
 <script>
-    import { Header, Swipe, SwipeItem } from 'mint-ui';
+    import { Header, Swipe, SwipeItem, Popup } from 'mint-ui';
 
     export default {
         name: "Home",
+        data() {
+            return {
+                menuVis: false
+            }
+        },
         components: {
             'mt-header': Header,
             'mt-swipe': Swipe,
-            'mt-swipe-item': SwipeItem
+            'mt-swipe-item': SwipeItem,
+            'mt-popup': Popup
         },
         computed: {
             rem() {
                 return window.rem;
+            }
+        },
+        methods: {
+            showMenu() {
+                this.menuVis = !this.menuVis;
             }
         }
     }
@@ -3211,11 +3232,51 @@ U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAAASUVORK5CYII=" /></svg>
         display: block;
     }
     .home .mint-button--normal {
-        padding: 0;
+        padding: 5px 10px;
         background: none;
         border: none;
         box-shadow: none;
-        font-size: .4rem;
-        height: 3rem;
+        font-size: .36rem;
+        height: 2.3rem;
     }
+    .home .btn-list .mint-button--normal svg{
+        width: 1rem;
+        height: 1rem;
+    }
+    ul {
+        font-size: .35rem;
+    }
+    ul li {
+        text-align: center;
+        border-top: 1px solid #d9d9d9;
+        padding: 10px 0;
+        letter-spacing: .05rem;
+    }
+    .home .mint-button::after {
+        opacity: 0.06;
+    }
+    /*.h-popup {*/
+        /*border-radius: 8px;*/
+        /*padding: 10px;*/
+        /*-webkit-transform: translate(-50%);*/
+        /*transform: translate(-50%);*/
+        /*top: 1rem;*/
+        /*right: -1.3rem !important;*/
+        /*left: unset;*/
+        /*width: 2.2rem;*/
+    /*}*/
+    /*.h-popup::before {*/
+        /*display: inline-block;*/
+        /*width: 0;*/
+        /*height: 0;*/
+        /*border: 10px solid transparent;*/
+        /*border-bottom-color: #fff;*/
+        /*content: "";*/
+        /*position: absolute;*/
+        /*top: -0.31rem;*/
+        /*right: 0.27rem;*/
+    /*}*/
+    /*.v-modal {*/
+        /*display: none;*/
+    /*}*/
 </style>
