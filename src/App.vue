@@ -25,4 +25,7 @@
     .icon-ver-alg {
         vertical-align: middle;
     }
+    body {
+        background-color: #f0f0f0d1;
+    }
 </style>

@@ -6,10 +6,12 @@ import App from './App';
 import router from './router';
 import { Button } from 'mint-ui';
 import Icon from 'vue-svg-icon/Icon.vue';
+import SVG from './components/SVG';
 
 Vue.config.productionTip = false;
 Vue.component(Button.name, Button);
 Vue.component('icon', Icon);
+Vue.component('svg-img', SVG);
 
 /* eslint-disable no-new */
 new Vue({
