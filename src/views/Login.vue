@@ -2,14 +2,25 @@
     <div class="login">
         <svg-img name="LOGIN" class="svg-c"></svg-img>
         <div class="loginForm">
-            <mt-field label="用户名" placeholder="请输入用户名" v-model="loginForm.userName"></mt-field>
-            <mt-field label="密码" placeholder="请输入密码" type="password" v-model="loginForm.password"></mt-field>
+            <group>
+                <x-input v-model="loginForm.userName" placeholder="请输入用户名" class="mint-cell">
+                    <icon name="yh" :scale="0.05 * $rem" slot="label"></icon>
+                </x-input>
+                <x-input label-width="23" v-model="loginForm.password" type="password" placeholder="请输入密码" class="mint-cell">
+                    <icon name="psd" :scale="0.051 * $rem" slot="label"></icon>
+                </x-input>
+            </group>
+            <x-button class="mint-cell login-btn">登&emsp;&emsp;录</x-button>
+
         </div>
+
+
 
     </div>
 </template>
 
 <script>
+    import { XInput, Group, XButton  } from 'vux';
     export default {
         name: "Login",
         data() {
@@ -19,6 +30,11 @@
                     password: ''
                 }
             }
+        },
+        components: {
+            XInput,
+            Group,
+            XButton
         }
     }
 </script>
@@ -42,13 +58,13 @@
         position: absolute;
         top:50%;
         left:50%;
-        margin-top: -0.83rem;
+        margin-top: -2.7rem;
         margin-left: -2.5rem;
         /*此时宽和高都要固定*/
         width: 5rem;
-        height: 1.66rem;
+        height: 1.64rem;
         z-index: 11;
-
+        padding: .5rem 0;
     }
     .login .mint-cell-wrapper {
         background-color: transparent;
@@ -57,13 +73,38 @@
     .login .mint-cell {
         background-color: rgba(8, 8, 8, 0.1);
         color: #fff;
-        margin: .2rem 0;
+        width: 5rem;
         height: 1rem;
+        margin: .5rem 0;
+        padding: 0 .4rem;
+        border: 0;
         border-radius: .5rem;
 
     }
     .login input, .login input::placeholder{
         color: #fff;
         background: transparent;
+        border: none;
+        margin-top: -1rem;
+        font-size: .28rem;
+    }
+    .login .svg-el {
+        position: relative;
+        top: -0.3rem;
+        left: -1.5rem;
+        display: inline-block;
+    }
+    .login .weui-cells:before, .login .weui-cell:before, .login .weui-cells:after, .login .weui-cell:after {
+        display: none;
+    }
+    .login .weui-cells {
+        background-color: transparent !important;
+        width: 5rem !important;
+    }
+    .login .weui-cell__hd {
+        width: .7rem;
+    }
+    .login-btn {
+        background-color: #EBBD29 !important;
     }
 </style>
