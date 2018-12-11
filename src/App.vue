@@ -31,4 +31,11 @@
     html,body,#app {
         height: 100%;
     }
+    .mint-header {
+        background-color: #c72626;
+        font-size: .3rem !important;
+        height: 1rem;
+        padding: .25rem;
+        overflow: hidden;
+    }
 </style>
