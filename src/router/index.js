@@ -19,6 +19,13 @@ export default new Router({
             name: 'Home',
             component: () => import('@/views/Home'),
             children: []
+        },
+        {
+            path: '/personal',
+            name: 'Personal',
+            component: () => import('@/views/Personal')
         }
+
+
     ]
 })

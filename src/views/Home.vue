@@ -2,7 +2,7 @@
     <section class="home">
         <mt-header title="新时代文明实践中心">
             <router-link to="/" slot="left">
-                <!--<mt-button icon="back">返回</mt-button>-->
+
             </router-link>
             <mt-button icon="more" slot="right" @click.native="showMenu">
                 <icon name="person" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
@@ -13,7 +13,7 @@
             position="bottom"
             style="width: 100%">
             <ul>
-                <li>个人中心</li>
+                <li @click="push('/personal')">个人中心</li>
                 <li>退出登录</li>
             </ul>
         </mt-popup>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-    import { Header, Swipe, SwipeItem, Popup } from 'mint-ui';
+    import { Swipe, SwipeItem, Popup } from 'mint-ui';
 
     export default {
         name: "Home",
@@ -68,7 +68,6 @@
             }
         },
         components: {
-            'mt-header': Header,
             'mt-swipe': Swipe,
             'mt-swipe-item': SwipeItem,
             'mt-popup': Popup
@@ -81,19 +80,16 @@
         methods: {
             showMenu() {
                 this.menuVis = !this.menuVis;
+            },
+            push(path) {
+                console.log(111);
+                this.$router.push(path);
             }
         }
     }
 </script>
 
 <style>
-    .mint-header {
-        background-color: #c72626;
-        font-size: .3rem;
-        height: 1rem;
-        padding: .25rem;
-        overflow: hidden;
-    }
     .swipe-height {
         height: 3.45rem;
     }
@@ -121,7 +117,7 @@
         height: 1rem;
     }
     ul {
-        font-size: .35rem;
+        font-size: .3rem;
     }
     ul li {
         text-align: center;
@@ -134,7 +130,8 @@
     }
     .home .notice {
         background-color: #fff;
-        padding: .2rem;
+        padding: .2rem .3rem;
+        height: 4rem;
     }
     .home .notice .label{
         width: 100%;
