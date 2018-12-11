@@ -1,10 +1,8 @@
 <template>
     <div id="app">
         <mt-header :title="currentPath[0] ? currentPath[0].meta.title : ''" v-if="headerVis">
-            <router-link to="/" slot="left">
-
-            </router-link>
-            <mt-button icon="more" slot="right" @click.native="showMenu">
+            <mt-button icon="back" slot="left" @click="$router.go(-1)" v-if="!personVis"></mt-button>
+            <mt-button icon="more" slot="right" @click.native="showMenu" v-if="personVis">
                 <icon name="person" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
             </mt-button>
         </mt-header>
@@ -14,7 +12,7 @@
             style="width: 100%">
             <ul>
                 <li @click="push('/personal')">个人中心</li>
-                <li>退出登录</li>
+                <li @click="push('/login')">退出登录</li>
             </ul>
         </mt-popup>
         <router-view @headerShow="handleHeader"></router-view>
@@ -28,7 +26,7 @@
         data() {
             return {
                 menuVis: false,
-                headerVis: true
+                headerVis: true,
             }
         },
         computed: {
@@ -38,6 +36,9 @@
             },
             currentPath() {
                 return this.$route.matched;
+            },
+            personVis() {
+                return this.currentPath[0] ? this.currentPath[0].name === 'Home' : true
             }
         },
         methods: {
@@ -47,7 +48,7 @@
             push(path) {
                 this.$router.push(path);
                 this.menuVis = false;
-                if (path === '/personal') {
+                if (path === '/personal' || path === '/login') {
                     this.headerVis = false
                 }
             },

@@ -41,7 +41,7 @@
         methods: {
             back() {
                 this.$router.go(-1);
-                this.$emit("headerShow");
+                this.$emit("headerShow", true);
             }
         }
     }

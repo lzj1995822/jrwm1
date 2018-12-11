@@ -1,6 +1,5 @@
 <template>
     <section class="home">
-
         <mt-swipe :auto="4000" class="swipe-height">
             <mt-swipe-item>
                 <svg-img name="H_BANNER"></svg-img>
@@ -11,11 +10,11 @@
                 <svg-img name="H_JOB_PLAN"></svg-img>
                 <p>工作计划</p>
             </mt-button>
-            <mt-button style="flex: 3">
+            <mt-button @click="push('/optionalActivities')" style="flex: 3">
                 <svg-img name="H_SELF_ACT"></svg-img>
                 <p>自学活动</p>
             </mt-button>
-            <mt-button>
+            <mt-button @click="push('/featuredActivities')">
                 <svg-img name="H_SPE_ACT"></svg-img>
                 <p>特色活动</p>
             </mt-button>
