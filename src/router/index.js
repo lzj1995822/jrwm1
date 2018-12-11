@@ -7,7 +7,12 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/home'
+            redirect: '/login'
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: () => import('@/views/Login')
         },
         {
             path: '/home',
@@ -20,5 +25,7 @@ export default new Router({
             name: 'Personal',
             component: () => import('@/views/Personal')
         }
+
+
     ]
 })
