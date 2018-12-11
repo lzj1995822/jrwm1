@@ -48,12 +48,22 @@
         width: 5rem;
         height: 1.66rem;
         z-index: 11;
-        background-color: transparent;
-
 
     }
     .login .mint-cell-wrapper {
         background-color: transparent;
         background-image: none;
+    }
+    .login .mint-cell {
+        background-color: rgba(8, 8, 8, 0.1);
+        color: #fff;
+        margin: .2rem 0;
+        height: 1rem;
+        border-radius: .5rem;
+
+    }
+    .login input, .login input::placeholder{
+        color: #fff;
+        background: transparent;
     }
 </style>

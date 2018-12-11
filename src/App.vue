@@ -26,7 +26,7 @@
         data() {
             return {
                 menuVis: false,
-                headerVis: true,
+                headerVis: false,
             }
         },
         computed: {
