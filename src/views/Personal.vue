@@ -3,7 +3,7 @@
         <div style="width: 100%;height:4.33rem;position: relative;">
             <svg-img name="PERSONAL" class="svg-bg"></svg-img>
             <mt-header class="per-header" title="个人中心">
-                <mt-button icon="back" slot="left" @click="$router.go(-1)"></mt-button>
+                <mt-button icon="back" slot="left" @click="back"></mt-button>
             </mt-header>
             <div class="header_img">
                 <img src="../assets/tou.jpg" alt="头像" width="100%"/>
@@ -16,7 +16,13 @@
 
 <script>
     export default {
-        name: "Personal"
+        name: "Personal",
+        methods: {
+            back() {
+                this.$router.go(-1);
+                this.$emit("headerShow");
+            }
+        }
     }
 </script>
 

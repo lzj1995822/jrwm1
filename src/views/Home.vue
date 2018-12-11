@@ -1,29 +1,13 @@
 <template>
     <section class="home">
-        <mt-header title="新时代文明实践中心">
-            <router-link to="/" slot="left">
 
-            </router-link>
-            <mt-button icon="more" slot="right" @click.native="showMenu">
-                <icon name="person" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
-            </mt-button>
-        </mt-header>
-        <mt-popup
-            v-model="menuVis"
-            position="bottom"
-            style="width: 100%">
-            <ul>
-                <li @click="push('/personal')">个人中心</li>
-                <li>退出登录</li>
-            </ul>
-        </mt-popup>
         <mt-swipe :auto="4000" class="swipe-height">
             <mt-swipe-item>
                 <svg-img name="H_BANNER"></svg-img>
             </mt-swipe-item>
         </mt-swipe>
         <div class="btn-list">
-            <mt-button>
+            <mt-button @click="push('/workPlan')">
                 <svg-img name="H_JOB_PLAN"></svg-img>
                 <p>工作计划</p>
             </mt-button>
