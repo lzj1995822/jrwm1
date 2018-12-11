@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <mt-header :title="currentPath[0].meta.title" v-if="headerVis">
+        <mt-header :title="currentPath[0] ? currentPath[0].meta.title : ''" v-if="headerVis">
             <router-link to="/" slot="left">
 
             </router-link>
@@ -17,7 +17,7 @@
                 <li>退出登录</li>
             </ul>
         </mt-popup>
-        <router-view @headerShow="headerVis = true"></router-view>
+        <router-view @headerShow="handleHeader"></router-view>
     </div>
 </template>
 
@@ -50,6 +50,9 @@
                 if (path === '/personal') {
                     this.headerVis = false
                 }
+            },
+            handleHeader(data) {
+                this.headerVis = data;
             }
         },
         components: {
