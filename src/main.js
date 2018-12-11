@@ -16,6 +16,8 @@ Vue.component(Cell.name, Cell);
 Vue.component('icon', Icon);
 Vue.component('svg-img', SVG);
 
+Vue.prototype.$rem  = document.documentElement.getBoundingClientRect().width / 6.4;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

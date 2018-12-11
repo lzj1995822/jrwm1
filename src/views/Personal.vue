@@ -17,10 +17,12 @@
             <mt-cell
                 title="问题反馈"
                 is-link>
+                <icon name="question" :scale=".045 * $rem" slot="icon" style="margin-bottom: -0.13rem"></icon>
             </mt-cell>
             <mt-cell
-                title="问题反馈"
+                title="关于"
                 is-link>
+                <icon name="info" :scale=".045 * $rem" slot="icon" style="margin-bottom: -0.13rem"></icon>
             </mt-cell>
         </div>
 
@@ -95,6 +97,13 @@
         line-height: .5rem;
     }
     .cell-bar {
-        margin-top: 1rem;
+        margin-top: 1.16rem;
+        font-size: .26rem;
+        text-align: left;
+    }
+</style>
+<style>
+    .cell-bar .mint-cell-text {
+        padding-left: .15rem;
     }
 </style>
