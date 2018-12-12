@@ -26,7 +26,7 @@
                 <span class="lean-right">更多</span>
             </div>
             <ul>
-                <li v-for="item in list" :key="item"><nobr>{{item}}</nobr></li>
+                <li v-for="item in list" :key="item" @click="$router.push(`/noticeDetail/${item}`)"><nobr>{{item}}</nobr></li>
             </ul>
 
         </div>
