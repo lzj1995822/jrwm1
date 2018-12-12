@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router);
-
-export default new Router({
+let router = new Router({
     routes: [
         {
             path: '/',
@@ -52,4 +51,20 @@ export default new Router({
             component: () => import('@/views/FeaturedActivities')
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.path == "/login") {
+        localStorage.removeItem("token");
+    }
+    let token = localStorage.getItem("token");
+    if (!token && to.path != "/login") {
+        next({
+            path: "/login"
+        });
+    } else {
+        next();
+    }
+});
+
+export default router;

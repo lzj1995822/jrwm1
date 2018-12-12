@@ -29,6 +29,7 @@
         },
         methods: {
             login() {
+                localStorage.setItem("token", '111');
                 this.$router.push('/home');
             }
         },
