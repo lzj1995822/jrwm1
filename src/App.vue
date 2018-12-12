@@ -15,7 +15,7 @@
                 <li @click="push('/login')">退出登录</li>
             </ul>
         </mt-popup>
-        <router-view @headerShow="handleHeader"></router-view>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -25,8 +25,7 @@
         name: 'App',
         data() {
             return {
-                menuVis: false,
-                headerVis: true,
+                menuVis: false
             }
         },
         computed: {
@@ -39,6 +38,15 @@
             },
             personVis() {
                 return this.currentPath[0] ? this.currentPath[0].name === 'Home' : true
+            },
+            headerVis() {
+                if (!this.currentPath[0]) {
+                    return false;
+                } else if (this.currentPath[0].name === 'Login' || this.currentPath[0].name === 'Personal') {
+                        return false;
+                } else {
+                    return true
+                }
             }
         },
         methods: {
@@ -48,12 +56,6 @@
             push(path) {
                 this.$router.push(path);
                 this.menuVis = false;
-                if (path === '/personal' || path === '/login') {
-                    this.headerVis = false
-                }
-            },
-            handleHeader(data) {
-                this.headerVis = data;
             }
         },
         components: {

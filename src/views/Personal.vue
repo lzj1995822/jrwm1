@@ -43,7 +43,6 @@
         methods: {
             back() {
                 this.$router.go(-1);
-                this.$emit("headerShow", true);
             }
         }
     }

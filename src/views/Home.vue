@@ -65,7 +65,6 @@
                 this.menuVis = !this.menuVis;
             },
             push(path) {
-                console.log(111);
                 this.$router.push(path);
             }
         }

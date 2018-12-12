@@ -10,12 +10,8 @@
                     <icon name="psd" :scale="0.051 * $rem" slot="label"></icon>
                 </x-input>
             </group>
-            <x-button class="mint-cell login-btn">登&emsp;&emsp;录</x-button>
-
+            <x-button class="mint-cell login-btn" @click.native="login">登&emsp;&emsp;录</x-button>
         </div>
-
-
-
     </div>
 </template>
 
@@ -29,6 +25,11 @@
                     userName: '',
                     password: ''
                 }
+            }
+        },
+        methods: {
+            login() {
+                this.$router.push('/home');
             }
         },
         components: {
@@ -52,6 +53,7 @@
     }
     .svg-c {
         /*position: relative;*/
+        width: 6.5rem;
         z-index: 10;
     }
     .loginForm{
@@ -99,6 +101,7 @@
     }
     .login .weui-cells {
         background-color: transparent !important;
+        margin: 0;
         width: 5rem !important;
     }
     .login .weui-cell__hd {
