@@ -82,7 +82,6 @@
         padding: 0 .4rem;
         border: 0;
         border-radius: .5rem;
-
     }
     .login input, .login input::placeholder{
         color: #fff;

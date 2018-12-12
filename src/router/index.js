@@ -51,6 +51,14 @@ let router = new Router({
             component: () => import('@/views/FeaturedActivities')
         },
         {
+            path: '/notice',
+            name: 'Notice',
+            meta: {
+                title: '通知公告'
+            },
+            component: () => import('@/views/Notice')
+        },
+        {
             path: '/about',
             name: 'About',
             meta: {

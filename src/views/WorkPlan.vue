@@ -1,5 +1,5 @@
 <template>
-    <div>111123</div>
+    <div @click="$router.push('/workPlanDetail/123')">111123</div>
 </template>
 
 <script>
