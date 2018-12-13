@@ -3,7 +3,7 @@
         <div v-for="item in list" class="table-d">
             <div style="border-bottom: 1px dashed #b7b7b7">
                 <table class="e-table">
-                    <tr>
+                    <tr  @click="$router.push('/workPlanDetail/123')">
                         <td>
                             <div class="td-label">工作标题：</div>
                         </td>
@@ -28,7 +28,9 @@
                         </td>
                     </tr>
                 </table>
-                <div class="up-load-icon" style="">asdasdasasdsadas</div>
+                <div class="up-load-icon">
+                        <icon name="ph" :scale=".08 * $rem" slot="icon" class="icon-ver-alg" @click.native="toUpload(item)"></icon>
+                </div>
             </div>
         </div>
     </div>
@@ -64,7 +66,10 @@
             }
         },
         methods: {
-
+            toUpload(item) {
+                let type = this.$route.name;
+                this.$router.push(`/upload/${type}/${item}`);
+            }
         }
     }
 </script>
