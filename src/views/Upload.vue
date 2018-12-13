@@ -6,17 +6,16 @@
             <uploader
                 :max="9"
                 :images="images"
-                :handle-click="true"
+                :handle-click="false"
                 :show-header="true"
                 title="活动图片："
-                :readonly="false"
                 :upload-url="uploadUrl"
                 name="img"
                 :params="params"
+                :autoUpload="false"
                 size="small"
-                @preview="preview"
-                @add-image="addImage"
-                @remove-image="removeImage"
+                @upload-image="addFile"
+                ref="uploadForm"
             ></uploader>
         </group>
         <x-button class="mint-cell login-btn" @click.native="login">确认上传</x-button>
@@ -34,7 +33,7 @@
                 form: {},
                 list: ['呢接口', 'asd', 'asdas'],
                 images: [],
-                uploadUrl: '',
+                uploadUrl: '555',
                 params: {},
             }
         },
@@ -50,8 +49,11 @@
             preview() {
 
             },
-            addImage() {
+            addFile(form) {
+                console.log(this.$refs.uploadForm.$refs.input.files, document.getElementsByTagName("input"))
+                this.images = this.$refs.uploadForm.$refs.input.files;
 
+                // this.$refs.input.click();
             },
             removeImage() {
 
@@ -59,6 +61,9 @@
         },
         components: {
             XInput, Group, XButton, XTextarea, Selector, Uploader
+        },
+        mounted() {
+            document.getElementsByTagName("input")[0].multiple = true;
         }
     }
 </script>
