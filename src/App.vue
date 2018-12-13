@@ -5,6 +5,9 @@
             <mt-button icon="more" slot="right" @click.native="showMenu" v-if="personVis">
                 <icon name="person" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
             </mt-button>
+            <mt-button icon="more" slot="right" @click.native="toUpload()" v-if="photoVis">
+                <icon name="photo" :scale="0.05 * rem" slot="icon" class="icon-ver-alg"></icon>
+            </mt-button>
         </mt-header>
         <mt-popup
             v-model="menuVis"
@@ -47,6 +50,12 @@
                 } else {
                     return true
                 }
+            },
+            photoVis() {
+                if (this.currentPath[0] && this.currentPath[0].name == 'WorkPlanDetail' || this.currentPath[0].name == 'SelfDetail') {
+                    return true;
+                }
+                return false;
             }
         },
         methods: {
@@ -56,6 +65,11 @@
             push(path) {
                 this.$router.push(path);
                 this.menuVis = false;
+            },
+            toUpload() {
+                let id = this.$route.params.id;
+                let type = this.$route.meta.type;
+                this.$router.push(`/upload/${type}/${id}`);
             }
         },
         components: {

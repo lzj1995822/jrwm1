@@ -21,6 +21,7 @@
             </mt-cell>
             <mt-cell
                 title="关于"
+                to="/about"
                 is-link>
                 <icon name="info" :scale=".045 * $rem" slot="icon" style="margin-bottom: -0.13rem"></icon>
             </mt-cell>

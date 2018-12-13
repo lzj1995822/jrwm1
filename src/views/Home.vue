@@ -23,10 +23,10 @@
         <div class="notice">
             <div class="label">
                 <span class="lean-left">通知公告</span>
-                <span class="lean-right">更多</span>
+                <span class="lean-right" @click="push('/notice')">更多</span>
             </div>
             <ul>
-                <li v-for="item in list" :key="item"><nobr>{{item}}</nobr></li>
+                <li v-for="item in list" :key="item" @click="$router.push(`/noticeDetail/${item}`)"><nobr>{{item}}</nobr></li>
             </ul>
 
         </div>
@@ -65,6 +65,7 @@
                 this.menuVis = !this.menuVis;
             },
             push(path) {
+                console.log(112)
                 this.$router.push(path);
             }
         }

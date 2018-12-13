@@ -7,7 +7,7 @@
                     <icon name="yh" :scale="0.05 * $rem" slot="label"></icon>
                 </x-input>
                 <x-input label-width="23" v-model="loginForm.password" type="password" placeholder="请输入密码" class="mint-cell">
-                    <icon name="psd" :scale="0.051 * $rem" slot="label"></icon>
+                    <icon name="psw" :scale="0.051 * $rem" slot="label"></icon>
                 </x-input>
             </group>
             <x-button class="mint-cell login-btn" @click.native="login">登&emsp;&emsp;录</x-button>
@@ -82,7 +82,6 @@
         padding: 0 .4rem;
         border: 0;
         border-radius: .5rem;
-
     }
     .login input, .login input::placeholder{
         color: #fff;

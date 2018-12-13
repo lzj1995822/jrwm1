@@ -49,6 +49,57 @@ let router = new Router({
                 title: '特色活动'
             },
             component: () => import('@/views/FeaturedActivities')
+        },
+        {
+            path: '/notice',
+            name: 'Notice',
+            meta: {
+                title: '通知公告'
+            },
+            component: () => import('@/views/Notice')
+        },
+        {
+            path: '/about',
+            name: 'About',
+            meta: {
+                title: '关于'
+            },
+            component: () => import('@/views/About')
+        },
+        {
+            path: '/noticeDetail/:id',
+            name: 'NOTICE',
+            meta: {
+                title: '公告详情',
+                type: 'Notice'
+            },
+            component: () => import('@/views/CommonDetail')
+        },
+        {
+            path: '/workPlanDetail/:id',
+            name: 'WorkPlanDetail',
+            meta: {
+                title: '工作详情',
+                type: 'WorkPlanDetail'
+            },
+            component: () => import('@/views/CommonDetail')
+        },
+        {
+            path: '/selfDetail/:id',
+            name: 'SelfDetail',
+            meta: {
+                title: '自选详情',
+                type: 'SelfDetail'
+            },
+            component: () => import('@/views/CommonDetail')
+        },
+        {
+            path: '/upload/:type/:id',
+            name: 'Upload',
+            meta: {
+                title: '活动上传'
+            },
+            component: () => import('@/views/Upload')
         }
     ]
 });
