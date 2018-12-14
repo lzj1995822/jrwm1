@@ -29,8 +29,14 @@
         },
         methods: {
             login() {
-                localStorage.setItem("token", '111');
-                this.$router.push('/home');
+                this.$http('POST', 'userLogin?userId=jr&userPwd=123456').then(
+                    data => {
+                        console.log(data, 111)
+                        localStorage.setItem('token', data.token);
+                        this.$router.push('/home');
+
+                    }
+                )
             }
         },
         components: {

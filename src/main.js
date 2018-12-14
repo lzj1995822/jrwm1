@@ -5,6 +5,8 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import { Button, Field, Header, Cell, Loadmore } from 'mint-ui';
+import { generate, common, getRouter } from '@/api';
+
 import Icon from 'vue-svg-icon/Icon.vue';
 import SVG from './components/SVG';
 
@@ -17,6 +19,8 @@ Vue.component(Loadmore.name, Loadmore);
 
 Vue.component('icon', Icon);
 Vue.component('svg-img', SVG);
+Vue.prototype.$http = common.http;
+Vue.prototype.$genHttp = generate;
 
 Vue.prototype.$rem  = document.documentElement.getBoundingClientRect().width / 6.4;
 

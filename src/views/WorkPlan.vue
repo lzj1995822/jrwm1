@@ -8,7 +8,7 @@
                             <div class="td-label">工作标题：</div>
                         </td>
                         <td>
-                            <div class="td-value">{{ item.title }}</div>
+                            <div class="td-value">{{ item.planName }}</div>
                         </td>
                     </tr>
                     <tr>
@@ -16,7 +16,7 @@
                             <div class="td-label">活动要求：</div>
                         </td>
                         <td>
-                            <div class="td-value">{{ item.content }}</div>
+                            <div class="td-value">{{ item.planContent }}</div>
                         </td>
                     </tr>
                     <tr>
@@ -24,7 +24,7 @@
                             <div class="td-label">截止时间：</div>
                         </td>
                         <td>
-                            <div class="td-value">{{ item.date }}</div>
+                            <div class="td-value">{{ item.expireTime }}</div>
                         </td>
                     </tr>
                 </table>
@@ -41,34 +41,22 @@
         name: "WorkPlan",
         data() {
             return {
-                list: [
-                    {
-                        title: '关于xx的标题',
-                        content: '内容XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                        date: '2018-01-01'
-                    },
-                    {
-                        title: '关于xx的标题',
-                        content: '内容XXXXXXXXXXXXXXXXXXXXXXXXXXX1233333333333333333333333331233333333X',
-                        date: '2018-01-01'
-                    },
-                    {
-                        title: '关于xx的标题',
-                        content: '内容XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                        date: '2018-01-01'
-                    },
-                    {
-                        title: '关于xx的标题',
-                        content: '内容XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                        date: '2018-01-01'
-                    }
-                ]
+                list: []
             }
+        },
+        created() {
+            this.$http('POST','myExecutePlan?pageNum=1&pageSize=10').then( data => {
+                this.list = data.myExecutePlanDTOS;
+            })
         },
         methods: {
             toUpload(item) {
                 let type = this.$route.name;
                 this.$router.push(`/upload/${type}/${item}`);
+            },
+            d() {
+                let data = [];
+                data.filter(item => item.name.search("村") === -1).filter()
             }
         }
     }
