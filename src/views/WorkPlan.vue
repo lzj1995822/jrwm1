@@ -1,9 +1,9 @@
 <template>
     <div class="work-plan">
-        <div v-for="item in list" class="table-d">
+        <div v-for="item in list" class="table-d"   @click="$router.push(`/workPlanDetail/${item.planId}`)">
             <div style="border-bottom: 1px dashed #b7b7b7">
                 <table class="e-table">
-                    <tr  @click="$router.push('/workPlanDetail/123')">
+                    <tr>
                         <td>
                             <div class="td-label">工作标题：</div>
                         </td>

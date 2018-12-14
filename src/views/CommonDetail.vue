@@ -1,13 +1,25 @@
 <template>
     <div class="common-detail">
-        <h6>asdas</h6>
-        <pre>sad</pre>
+        <h6>{{ detail.name }}</h6>
+        <pre>{{ detail.content }}</pre>
     </div>
 </template>
 
 <script>
     export default {
         name: "CommonDetail",
+        data() {
+            return {
+                detail: {}
+            }
+        },
+        created() {
+            this.$http('POST', `querySinglePlan?planId=${this.bId}`).then(
+                data => {
+                    this.detail = data;
+                }
+            )
+        },
         computed: {
             type() {
                 return this.$route.meta.type;
