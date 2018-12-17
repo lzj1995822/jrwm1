@@ -1,6 +1,6 @@
 <template>
     <section class="home">
-        <div class="convert-btn">
+        <div class="convert-btn" @click="$router.push('/exchange')">
         </div>
     </section>
 </template>
