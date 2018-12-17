@@ -4,13 +4,9 @@ import 'mint-ui/lib/style.css';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import { Button } from 'mint-ui';
-import Icon from 'vue-svg-icon/Icon.vue';
 
 Vue.config.productionTip = false;
-Vue.component(Button.name, Button);
-Vue.component('icon', Icon);
-
+Vue.prototype.$rem  = document.documentElement.getBoundingClientRect().width / 6.4;
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
