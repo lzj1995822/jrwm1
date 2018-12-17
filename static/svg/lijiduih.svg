@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="118" height="28" viewBox="0 0 118 28">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 30px;
+        fill: #fff;
+        text-anchor: middle;
+        font-family: "Source Han Sans CN";
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <text id="立即兑换" class="cls-1" x="58.668" y="25.388"><tspan x="58.668">立即兑换</tspan></text>
+</svg>

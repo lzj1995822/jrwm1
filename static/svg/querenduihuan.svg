@@ -1,0 +1,26 @@
+<svg id="queren" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="518" height="79" viewBox="0 0 518 79">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ec6941;
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        font-size: 30px;
+        fill: #fff;
+        text-anchor: middle;
+        font-family: "Source Han Sans CN";
+      }
+    </style>
+    <filter id="filter" x="0" y="0" width="518" height="79" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="2" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="1"/>
+      <feFlood result="flood" flood-color="#211613" flood-opacity="0.22"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect id="圆角矩形_1" data-name="圆角矩形 1" class="cls-1" x="1" width="515" height="75" rx="10" ry="10"/>
+  <text id="确认兑换" class="cls-2" x="260.224" y="49.824">确认兑换</text>
+</svg>
