@@ -18,6 +18,11 @@ export default new Router({
             path: '/exchange',
             name: 'exchange',
             component: () => import('@/views/Exchange')
+        },
+        {
+            path: '/result',
+            name: 'result',
+            component: () => import('@/views/Result')
         }
     ]
 })
