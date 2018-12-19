@@ -1,7 +1,7 @@
 <template>
     <div class="upload">
         <group>
-            <selector title="开展地点：" v-model="form.area" :options="list"></selector>
+            <popup-picker title="开展地点：" :data="list" :columns="2" v-model="form.area" ref="picker3"></popup-picker>
             <x-textarea title="文字描述：" v-model="form.des" :max="200"></x-textarea>
             <uploader
                 :max="9"
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import { XInput, Group, XButton, XTextarea, Selector } from 'vux';
+    import { XInput, Group, XButton, XTextarea, PopupPicker } from 'vux';
     import Uploader from 'vux-uploader';
 
     export default {
@@ -31,7 +31,7 @@
         data() {
             return {
                 form: {},
-                list: ['呢接口', 'asd', 'asdas'],
+                list: [],
                 images: [],
                 uploadUrl: '555',
                 params: {},
@@ -45,6 +45,9 @@
                 return this.$route.params.id;
             }
         },
+        created() {
+            this.loadList();
+        },
         methods: {
             preview() {
 
@@ -53,14 +56,40 @@
                 console.log(this.$refs.uploadForm.$refs.input.files, document.getElementsByTagName("input"))
                 this.images = this.$refs.uploadForm.$refs.input.files;
 
-                // this.$refs.input.click();
             },
             removeImage() {
 
+            },
+            loadVaillage(townId){
+                this.$http('POST', `queryCountryByTownId?townId=${townId}`).then(
+                    data => {
+                        data.forEach(item => {
+                            this.list.push({
+                                value: item.id,
+                                name: item.name,
+                                parent: `town${townId}`
+                            })
+                        })
+                    }
+                )
+            },
+            loadList() {
+                this.$http('POST', 'queryTown').then(
+                    data => {
+                        data.forEach(item => {
+                            this.list.push({
+                                name: item.name,
+                                value: `town${item.id}`,
+                                parent: 0
+                            });
+                            this.loadVaillage(item.id)
+                        })
+                    }
+                )
             }
         },
         components: {
-            XInput, Group, XButton, XTextarea, Selector, Uploader
+            XInput, Group, XButton, XTextarea, PopupPicker , Uploader
         },
         mounted() {
             document.getElementsByTagName("input")[0].multiple = true;

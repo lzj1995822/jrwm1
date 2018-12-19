@@ -26,7 +26,7 @@
                 <span class="lean-right" @click="push('/notice')">更多</span>
             </div>
             <ul>
-                <li v-for="item in list" :key="item" @click="$router.push(`/noticeDetail/${item}`)"><nobr>{{item}}</nobr></li>
+                <li v-for="item in list" :key="item.id" @click="$router.push(`/noticeDetail/${item.id}`)"><nobr>{{item.title}}</nobr></li>
             </ul>
 
         </div>
@@ -42,18 +42,16 @@
         data() {
             return {
                 menuVis: false,
-                list: [
-                    '关于什么什么的通知关于什么什么的通知关于什么什么的通知',
-                    '关于什么什么的通知关于什么什么的通知',
-                    '关于什么什么的通知关于什么什么的通知',
-                    '关于什么什么的通知关于什么什么的通知'
-                ]
+                list: []
             }
         },
         components: {
             'mt-swipe': Swipe,
             'mt-swipe-item': SwipeItem,
             'mt-popup': Popup
+        },
+        created() {
+            this.loadNotice();
         },
         computed: {
             rem() {
@@ -67,6 +65,13 @@
             push(path) {
                 console.log(112)
                 this.$router.push(path);
+            },
+            loadNotice() {
+                this.$http('POST', 'queryInformation?pageNum=1&pageSize=6').then(
+                    data => {
+                        this.list = data.content;
+                    }
+                )
             }
         }
     }

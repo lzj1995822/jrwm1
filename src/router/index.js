@@ -94,6 +94,15 @@ let router = new Router({
             component: () => import('@/views/CommonDetail')
         },
         {
+            path: '/featuredActivities/:id',
+            name: 'featuredActivities',
+            meta: {
+                title: '特色活动详情',
+                type: 'featuredActivities'
+            },
+            component: () => import('@/views/CommonDetail')
+        },
+        {
             path: '/upload/:type/:id',
             name: 'Upload',
             meta: {

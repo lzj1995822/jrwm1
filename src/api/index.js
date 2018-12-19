@@ -37,7 +37,11 @@ service.interceptors.response.use(
     response => {
     // 判断后台返回的请求状态码 如果错误直接弹匡提示
         if (response.data.success) {
-            return Promise.resolve(response.data.content);
+            if (response.data.content) {
+                return Promise.resolve(response.data.content);
+            } else {
+                return Promise.resolve(response.data.contents)
+            }
         } else {
             // 请求失败则要弹提示框
             return Promise.reject(response.data.msg);

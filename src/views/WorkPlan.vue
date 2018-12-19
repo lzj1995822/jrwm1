@@ -45,7 +45,7 @@
             }
         },
         created() {
-            this.$http('POST','myExecutePlan?pageNum=1&pageSize=10').then( data => {
+            this.$http('POST','myExecutePlan?pageNum=1&pageSize=10&selectType=1').then( data => {
                 this.list = data.myExecutePlanDTOS;
             })
         },
