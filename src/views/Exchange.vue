@@ -2,7 +2,7 @@
     <div>
         <div v-if="!isRecord" class="exchange">
             <div class="hd">
-            <div class="icon-l" @click="$router.go(-1)"><svg t="1545048674179" style="top: -.39rem;position: relative;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1571" xmlns:xlink="http://www.w3.org/1999/xlink" width=".56rem" height=".56rem"><path d="M442.5 512l273.1 273.1c25 25 25 65.5 0 90.5s-65.5 25-90.5 0L308.4 558.9c-12.9-12.9-19.2-30-18.7-47-0.4-16.9 5.8-33.9 18.7-46.8l316.8-316.8c25-25 65.5-25 90.5 0s25 65.5 0 90.5L442.5 512z" fill="#ffffff" p-id="1572"></path></svg></div>
+            <div class="icon-l" @click="$router.go(-1)"><svg t="1545048674179" style="top: -.33rem;position: relative;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1571" xmlns:xlink="http://www.w3.org/1999/xlink" width=".56rem" height=".56rem"><path d="M442.5 512l273.1 273.1c25 25 25 65.5 0 90.5s-65.5 25-90.5 0L308.4 558.9c-12.9-12.9-19.2-30-18.7-47-0.4-16.9 5.8-33.9 18.7-46.8l316.8-316.8c25-25 65.5-25 90.5 0s25 65.5 0 90.5L442.5 512z" fill="#ffffff" p-id="1572"></path></svg></div>
             <div class="title"><p>我的积分&emsp;&emsp;&emsp;</p></div>
         </div>
             <div class="jf-info">
@@ -22,7 +22,7 @@
         </div>
         <div v-if="isRecord" class="record">
             <div class="hd">
-                <div class="icon-l" @click="$router.go(-1)"><svg t="1545048674179" style="top: -.39rem;position: relative;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1571" xmlns:xlink="http://www.w3.org/1999/xlink" width=".56rem" height=".56rem"><path d="M442.5 512l273.1 273.1c25 25 25 65.5 0 90.5s-65.5 25-90.5 0L308.4 558.9c-12.9-12.9-19.2-30-18.7-47-0.4-16.9 5.8-33.9 18.7-46.8l316.8-316.8c25-25 65.5-25 90.5 0s25 65.5 0 90.5L442.5 512z" fill="#ffffff" p-id="1572"></path></svg></div>
+                <div class="icon-l" @click="$router.go(-1)"><svg t="1545048674179" style="top: -.33rem;position: relative;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1571" xmlns:xlink="http://www.w3.org/1999/xlink" width=".56rem" height=".56rem"><path d="M442.5 512l273.1 273.1c25 25 25 65.5 0 90.5s-65.5 25-90.5 0L308.4 558.9c-12.9-12.9-19.2-30-18.7-47-0.4-16.9 5.8-33.9 18.7-46.8l316.8-316.8c25-25 65.5-25 90.5 0s25 65.5 0 90.5L442.5 512z" fill="#ffffff" p-id="1572"></path></svg></div>
                 <div class="title"><p>我的积分&emsp;&emsp;&emsp;</p></div>
             </div>
             <div class="jf-info">
