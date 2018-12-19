@@ -24,17 +24,19 @@
                 loginForm: {
                     userName: '',
                     password: ''
-                }
+                },
             }
         },
         methods: {
             login() {
+                this.$vux.loading.show({
+                    text: '登陆中'
+                })
                 this.$http('POST', 'userLogin?userId=jr&userPwd=123456').then(
                     data => {
-                        console.log(data, 111)
                         localStorage.setItem('token', data.token);
+                        this.$vux.loading.hide();
                         this.$router.push('/home');
-
                     }
                 )
             }

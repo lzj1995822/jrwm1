@@ -106,4 +106,20 @@
         padding: .25rem;
         overflow: hidden;
     }
+    .weui-toast {
+        width: 3rem !important;
+        height: 3rem !important;
+        min-height: 3rem !important;
+        top: 50% !important;
+        margin-top: -1.5rem;
+        
+    }
+    .weui-toast__content {
+        font-size: .4rem !important;
+    }
+    .weui-icon_toast.weui-loading {
+        margin: .6rem 0 0 !important;
+        width: .8rem !important;
+        height: .8rem !important;
+    }
 </style>
