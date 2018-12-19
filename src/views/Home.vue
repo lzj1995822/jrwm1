@@ -12,7 +12,7 @@
             </mt-button>
             <mt-button @click="push('/optionalActivities')" style="flex: 3">
                 <svg-img name="H_SELF_ACT"></svg-img>
-                <p>自学活动</p>
+                <p>自选活动</p>
             </mt-button>
             <mt-button @click="push('/featuredActivities')">
                 <svg-img name="H_SPE_ACT"></svg-img>
