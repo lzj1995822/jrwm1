@@ -1,13 +1,14 @@
 <template>
     <div>
+        <input type="button" @click="success = !success" value="切换结果" style="float: right;position: fixed;top:.5rem;right: .2rem;z-index: 999"/>
         <div class="result" v-if="success">
             <div class="r-contain" >
-                <div>观影券号：555555</div>
-                <div>观影密码：555555</div>
+                <div>观影券号：{{result.number}}</div>
+                <div>观影密码：{{result.pwd}}</div>
                 <div style="font-size: .24rem; color: #6b6b6b">有效期：半年有效期</div>
             </div>
         </div>
-        <div class="r-done">
+        <div class="r-done" v-if="!success">
             <div class="back" @click="$router.go(-1)">
             </div>
         </div>
@@ -18,11 +19,17 @@
     export default {
         name: "Result",
         props: {
+            // 判断兑换成功还是失败，路由传参控制
             success: {
                 type: Boolean,
-                default: false
+                default: true
+            },
+            // 兑换成功后的观影信息，路由传参
+            result: {
+                type: Object,
+                default: {}
             }
-        }
+        },
     }
 </script>
 
