@@ -1,21 +1,35 @@
 <template>
     <div class="upload">
         <group>
-            <popup-picker title="开展地点：" :data="list" :columns="2" v-model="form.area" ref="picker3"></popup-picker>
-            <x-textarea title="文字描述：" v-model="form.des" :max="200"></x-textarea>
+            <popup-picker title="开展地点：" :data="list" :columns="2" v-model="form.area" ref="picker3" :show-name="true" :display-format="formatValue"></popup-picker>
+            <x-textarea title="文字描述：" v-model="form.content" :max="200"></x-textarea>
             <uploader
-                :max="9"
+                :max="5"
                 :images="images"
                 :handle-click="false"
                 :show-header="true"
                 title="活动图片："
                 :upload-url="uploadUrl"
-                name="img"
+                name="file"
                 :params="params"
                 :autoUpload="false"
                 size="small"
-                @upload-image="addFile"
+                @upload-image="addFile('uploadForm', images)"
                 ref="uploadForm"
+            ></uploader>
+            <uploader
+                :max="4"
+                :images="videos"
+                :handle-click="false"
+                :show-header="true"
+                title="活动视频："
+                :upload-url="uploadUrl"
+                name="file"
+                :params="params"
+                :autoUpload="false"
+                size="small"
+                @upload-image="addFile('videoForm', videos)"
+                ref="videoForm"
             ></uploader>
         </group>
         <x-button class="mint-cell login-btn" @click.native="login">确认上传</x-button>
@@ -30,10 +44,13 @@
         name: "Upload",
         data() {
             return {
-                form: {},
+                form: {
+                    area: []
+                },
                 list: [],
                 images: [],
-                uploadUrl: '555',
+                videos: [],
+                uploadUrl: 'http://47.254.44.188:8088/upload',
                 params: {},
             }
         },
@@ -49,15 +66,21 @@
             this.loadList();
         },
         methods: {
-            preview() {
-
-            },
-            addFile(form) {
-                console.log(this.$refs.uploadForm.$refs.input.files, document.getElementsByTagName("input"))
-                this.images = this.$refs.uploadForm.$refs.input.files;
-
-            },
-            removeImage() {
+            addFile(formName, obj) {
+                this.$vux.loading.show({text: '上传中'});
+                let files = this.$refs[formName].$refs.input.files;
+                for (let i = 0; i < files.length; i++) {
+                    let formData = new FormData();
+                    formData.append('file', files[i]);
+                    this.$http('POST','upload', formData).then(
+                        data => {
+                            obj.push({url: `http://47.254.44.188:8088/files/${data}`, name: data});
+                            if (i === (files.length - 1)) {
+                                this.$vux.loading.hide();
+                            }
+                        }
+                    )
+                }
 
             },
             loadVaillage(townId){
@@ -86,6 +109,35 @@
                         })
                     }
                 )
+            },
+            formatValue(value) {
+                let item = this.list.filter(item => item.value == Number(value[1] || 0));
+                return item[0] ? item[0].name : '';
+            },
+            login() {
+                if (!this.form.area[1]) {
+                    this.$vux.alert.show({
+                        title: '验证',
+                        content: '请选择开展地点！'
+                    });
+                    return;
+                }
+                let data = {
+                    planId: this.bId,
+                    resultPic: this.images.join('|'),
+                    resultContent: this.form.content,
+                    practiceId: this.form.area[1],
+                    resultVideo: this.videos.join("|")
+                }
+                this.$http('POST', 'executePlan', data).then(
+                    () => {
+                        this.$vux.alert.show({
+                            title: '结果',
+                            content: '上传成功！'
+                        });
+                        this.$router.go(-1);
+                    }
+                )
             }
         },
         components: {
@@ -93,6 +145,7 @@
         },
         mounted() {
             document.getElementsByTagName("input")[0].multiple = true;
+            document.getElementsByTagName("input")[1].accept = "video/*";
         }
     }
 </script>
@@ -110,7 +163,7 @@
         background: #fff;
     }
     .upload .mint-cell {
-        background-color: #c72626;
+        background-color: #c72626 !important;
         color: #fff;
         width: 90%;
         height: 1rem;
@@ -121,5 +174,8 @@
     }
     .upload .weui-cells {
         margin-top: 0 !important;
+    }
+    .weui-dialog__hd {
+        padding: 0 !important;
     }
 </style>

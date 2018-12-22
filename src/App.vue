@@ -112,7 +112,7 @@
         min-height: 3rem !important;
         top: 50% !important;
         margin-top: -1.5rem;
-        
+        margin-left: -1.5rem;
     }
     .weui-toast__content {
         font-size: .4rem !important;

@@ -9,7 +9,9 @@ import { generate, common, getRouter } from '@/api';
 import Icon from 'vue-svg-icon/Icon.vue';
 import SVG from './components/SVG';
 import  { LoadingPlugin } from 'vux';
+import  { AlertPlugin } from 'vux';
 
+Vue.use(AlertPlugin);
 Vue.use(LoadingPlugin);
 Vue.config.productionTip = false;
 Vue.component(Button.name, Button);

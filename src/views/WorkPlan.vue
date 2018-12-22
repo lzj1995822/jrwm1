@@ -1,38 +1,40 @@
 <template>
-    <div class="work-plan">
-        <div v-for="item in list" class="table-d"   @click="$router.push(`/workPlanDetail/${item.planId}`)">
-            <div style="border-bottom: 1px dashed #b7b7b7">
-                <table class="e-table">
-                    <tr>
-                        <td>
-                            <div class="td-label">工作标题：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.planName }}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top">
-                            <div class="td-label">活动要求：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.planContent }}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="td-label">截止时间：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.expireTime }}</div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="up-load-icon">
-                        <icon name="ph" :scale=".08 * $rem" slot="icon" class="icon-ver-alg" @click.native="toUpload(item)"></icon>
+    <div class="work-plan" :style="{'-webkit-overflow-scrolling': scrollMode}">
+        <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+            <div v-for="item in list" class="table-d">
+                <div style="border-bottom: 1px dashed #b7b7b7">
+                    <table class="e-table" @click="$router.push(`/workPlanDetail/${item.planId}`)">
+                        <tr>
+                            <td>
+                                <div class="td-label">工作标题：</div>
+                            </td>
+                            <td>
+                                <div class="td-value">{{ item.planName }}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <div class="td-label">活动要求：</div>
+                            </td>
+                            <td>
+                                <div class="td-value">{{ item.planContent }}</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="td-label">截止时间：</div>
+                            </td>
+                            <td>
+                                <div class="td-value">{{ item.expireTime }}</div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="up-load-icon">
+                            <icon name="ph" :scale=".08 * $rem" slot="icon" class="icon-ver-alg" @click.native="toUpload(item)"></icon>
+                    </div>
                 </div>
             </div>
-        </div>
+        </mt-loadmore>
     </div>
 </template>
 
@@ -41,22 +43,46 @@
         name: "WorkPlan",
         data() {
             return {
-                list: []
+                list: [],
+                pageNum: 1,
+                pageSize: 6,
+                allLoaded: false,
+                scrollMode: 'auto'
             }
         },
         created() {
-            this.$http('POST','myExecutePlan?pageNum=1&pageSize=10&selectType=1').then( data => {
+            this.loadData().then( data => {
                 this.list = data.myExecutePlanDTOS;
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
             })
         },
         methods: {
             toUpload(item) {
                 let type = this.$route.name;
-                this.$router.push(`/upload/${type}/${item}`);
+                this.$router.push(`/upload/${type}/${item.planId}`);
             },
             d() {
                 let data = [];
                 data.filter(item => item.name.search("村") === -1).filter()
+            },
+            loadData() {
+                return this.$http('POST',`myExecutePlan?pageNum=${this.pageNum}&pageSize=${this.pageSize}&selectType=1`);
+            },
+            loadTop(){
+
+            },
+            loadBottom() {
+                // this.loadData().then(data => {
+                //     this.list.push(data.myExecutePlanDTOS);
+                //     this.allLoaded = true;// 若数据已全部获取完毕
+                // });
+                this.$refs.loadmore.onBottomLoaded();
             }
         }
     }
@@ -65,7 +91,7 @@
 <style scoped>
     .work-plan {
         width: 100%;
-        height: 100%;
+        height: 70%;
     }
     .work-plan table {
         font-size: .23rem;

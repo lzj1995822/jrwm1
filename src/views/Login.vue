@@ -32,7 +32,7 @@
                 this.$vux.loading.show({
                     text: '登陆中'
                 })
-                this.$http('POST', 'userLogin?userId=jr&userPwd=123456').then(
+                this.$http('POST', 'userLogin?userId=country&userPwd=123456').then(
                     data => {
                         localStorage.setItem('token', data.token);
                         this.$vux.loading.hide();
