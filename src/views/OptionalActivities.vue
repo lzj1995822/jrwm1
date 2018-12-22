@@ -1,38 +1,43 @@
 <template>
-    <div class="work-plan">
-        <div v-for="item in list" class="table-d">
-            <div style="border-bottom: 1px dashed #b7b7b7">
-                <table class="e-table" @click="$router.push(`/workPlanDetail/${item.planId}`)">
-                    <tr>
-                        <td>
-                            <div class="td-label">工作标题：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.planName }}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top">
-                            <div class="td-label">活动要求：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.planContent }}</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="td-label">截止时间：</div>
-                        </td>
-                        <td>
-                            <div class="td-value">{{ item.expireTime }}</div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="up-load-icon">
-                    <icon name="ph" :scale=".08 * $rem" slot="icon" class="icon-ver-alg" @click.native="toUpload(item)"></icon>
+    <div class="work-plan" :style="{'-webkit-overflow-scrolling': scrollMode}">
+        <scroller lock-x @on-scroll-bottom="loadBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
+            <div class="box2">
+                <div v-for="item in list" class="table-d">
+                    <div style="border-bottom: 1px dashed #b7b7b7">
+                        <table class="e-table" @click="$router.push(`/workPlanDetail/${item.planId}`)">
+                            <tr>
+                                <td>
+                                    <div class="td-label">工作标题：</div>
+                                </td>
+                                <td>
+                                    <div class="td-value">{{ item.planName }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td valign="top">
+                                    <div class="td-label">活动要求：</div>
+                                </td>
+                                <td>
+                                    <div class="td-value">{{ item.planContent }}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="td-label">截止时间：</div>
+                                </td>
+                                <td>
+                                    <div class="td-value">{{ item.expireTime }}</div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="up-load-icon">
+                            <icon name="ph" :scale=".08 * $rem" slot="icon" class="icon-ver-alg" @click.native="toUpload(item)"></icon>
+                        </div>
+                    </div>
                 </div>
+                <load-more v-if="!loadable" tip="loading"></load-more>
             </div>
-        </div>
+        </scroller>
     </div>
 </template>
 
@@ -41,12 +46,27 @@
         name: "WorkPlan",
         data() {
             return {
-                list: []
+                list: [],
+                pageNum: 1,
+                pageSize: 6,
+                totalPage: 1,
+                scrollMode: 'auto',
+                loadable: true
             }
         },
         created() {
-            this.$http('POST','myExecutePlan?pageNum=1&pageSize=10&selectType=2').then( data => {
+            this.loadData().then( data => {
                 this.list = data.myExecutePlanDTOS;
+                this.totalPage = data.paginator.totalPage;
+                this.list.push({planName: '123', planContent: '213', expireTime: '123'})
+                this.list.push({planName: 's', planContent: '213', expireTime: '123'})
+                this.list.push({planName: '12zx3', planContent: '213', expireTime: '123'})
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
+                // this.list.push(data.myExecutePlanDTOS)
             })
         },
         methods: {
@@ -57,6 +77,22 @@
             d() {
                 let data = [];
                 data.filter(item => item.name.search("村") === -1).filter()
+            },
+            loadData() {
+                return this.$http('POST',`myExecutePlan?pageNum=${this.pageNum}&pageSize=${this.pageSize}&selectType=2`);
+            },
+            loadBottom() {
+                this.totalPage = 2;
+                if (this.loadable && this.pageNum < this.totalPage) {
+                    this.loadable = false;
+                    this.pageNum++;
+                    this.loadData().then(data => {
+                        this.totalPage = data.paginator.totalPage;
+                        this.list = this.list.concat([{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'}])
+                        this.loadable = true;
+                    });
+                }
+
             }
         }
     }
@@ -65,7 +101,7 @@
 <style scoped>
     .work-plan {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
     .work-plan table {
         font-size: .23rem;
@@ -113,5 +149,8 @@
         position: relative;
         overflow: hidden;
         vertical-align: top;
+    }
+    .mint-loadmore {
+        overflow: scroll !important;
     }
 </style>
