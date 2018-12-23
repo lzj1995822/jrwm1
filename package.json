@@ -5,7 +5,7 @@
   "author": "asher.lv <243485908@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.0.102",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.0.103",
     "start": "npm run dev",
     "build": "node build/build.js"
   },

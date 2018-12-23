@@ -58,15 +58,6 @@
             this.loadData().then( data => {
                 this.list = data.myExecutePlanDTOS;
                 this.totalPage = data.paginator.totalPage;
-                this.list.push({planName: '123', planContent: '213', expireTime: '123'})
-                this.list.push({planName: 's', planContent: '213', expireTime: '123'})
-                this.list.push({planName: '12zx3', planContent: '213', expireTime: '123'})
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
             })
         },
         methods: {
