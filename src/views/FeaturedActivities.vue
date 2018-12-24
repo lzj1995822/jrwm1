@@ -27,7 +27,7 @@
             this.loadData().then(
                 data => {
                     this.list = data.list;
-                    this.totalPage = data.paginator.totalPage;
+                    this.totalPage = 2;
                 }
             )
         },
@@ -41,7 +41,7 @@
                     this.pageNum++;
                     this.loadData().then(data => {
                         this.totalPage = data.paginator.totalPage;
-                        this.list = this.list.concat([{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'}])
+                        this.list = this.list.concat([{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123', pic: [123]},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123', pic: [123]}])
                         this.loadable = true;
                     });
                 }
@@ -57,17 +57,21 @@
     .table-d {
         display: inline-block;
         width: 2.9rem;
-        height: 4.5rem;
+        height: 4rem;
         overflow: hidden;
         float: left;
     }
     .table-d span {
         display: block;
         color: #111;
-        font-size: .32rem;
+        font-size: .28rem;
     }
     .table-d p {
-        font-size: .28rem;
+        font-size: .26rem;
         text-align: left;
+    }
+    .table-d img {
+        width: 2.9rem;
+        height: 2.5rem;
     }
 </style>

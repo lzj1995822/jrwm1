@@ -37,6 +37,10 @@
                 </td>
             </tr>
         </table>
+        <div class="e-table" v-if="type === 'featuredActivities'">
+            <h5>{{detail.planName}}</h5>
+            <img v-for="item in detail.pic" :src="item">
+        </div>
     </div>
 </template>
 
