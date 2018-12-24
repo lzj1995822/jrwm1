@@ -1,6 +1,7 @@
 <template>
     <div class="work-plan" :style="{'-webkit-overflow-scrolling': scrollMode}">
-        <scroller lock-x @on-scroll-bottom="loadBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
+        <scroller :pullupConfig="upConfig"
+            :use-pullup=true :use-pulldown=false v-model="status" lock-x @on-scroll-bottom="loadBottom" ref="scrollerBottom" :scroll-bottom-offst="200">
             <div class="box2">
                 <div v-for="item in list" class="table-d">
                     <div style="border-bottom: 1px dashed #b7b7b7">
@@ -35,7 +36,8 @@
                         </div>
                     </div>
                 </div>
-                <load-more v-if="!loadable" tip="loading"></load-more>
+                <load-more v-if="!loadable && !loadDone" tip="loading"></load-more>
+                <p  style="font-size: .3rem;padding-top: .15rem" v-if="loadDone">暂无更多数据</p>
             </div>
         </scroller>
     </div>
@@ -51,22 +53,25 @@
                 pageSize: 6,
                 totalPage: 1,
                 scrollMode: 'auto',
-                loadable: true
+                loadable: true,
+                loadDone: false,
+                upConfig: { content: '上拉或下拉加载更多', downContent: '下拉加载更多', upContent: '上拉加载更多', loadingContent: '加载完成'},
+                status: {
+                    pullupStatus: 'default',
+                    pulldownStatus: 'disabled'
+                }
             }
         },
         created() {
+            this.$vux.loading.show({
+                text: '加载中'
+            });
             this.loadData().then( data => {
                 this.list = data.myExecutePlanDTOS;
-                this.totalPage = data.paginator.totalPage;
-                this.list.push({planName: '123', planContent: '213', expireTime: '123'})
-                this.list.push({planName: 's', planContent: '213', expireTime: '123'})
-                this.list.push({planName: '12zx3', planContent: '213', expireTime: '123'})
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
-                // this.list.push(data.myExecutePlanDTOS)
+                let left = data.paginator.totalCount%this.pageSize;
+                let page = data.paginator.totalCount/this.pageSize
+                this.totalPage = left === 0 ? page : page + 1 ;
+                this.$vux.loading.hide();
             })
         },
         methods: {
@@ -84,11 +89,23 @@
             loadBottom() {
                 if (this.loadable && this.pageNum < this.totalPage) {
                     this.loadable = false;
+                    this.status.pullupStatus = false;
                     this.pageNum++;
                     this.loadData().then(data => {
-                        this.totalPage = data.paginator.totalPage;
-                        this.list = this.list.concat([{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'},{planName: 'xxxxx'+ this.pageNum, planContent: '213', expireTime: '123'}])
-                        this.loadable = true;
+                        setTimeout(() => {
+                            if (data.myExecutePlanDTOS.length > 0) {
+                            let left = data.paginator.totalCount%this.pageSize;
+                            let page = data.paginator.totalCount/this.pageSize;
+                            this.totalPage = left === 0 ? page : page + 1 ;
+                            this.list = this.list.concat(data.myExecutePlanDTOS);
+                            this.loadable = true;
+                        }
+                        if (data.myExecutePlanDTOS.length != this.pageSize) {
+                            this.loadable = false;
+                            this.loadDone = true;
+                            this.$refs.scrollerBottom.disablePullup();
+                        }
+                        }, 200)
                     });
                 }
 

@@ -122,4 +122,8 @@
         width: .8rem !important;
         height: .8rem !important;
     }
+    .xs-plugin-pullup-container {
+        height: 30px !important;
+        font-size: .3rem;
+    }
 </style>
